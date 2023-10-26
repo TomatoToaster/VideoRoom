@@ -2052,6 +2052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortaCam (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6214004384079512316, guid: f42794d5cd9660b42bd45ad847332c13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8370932361781706248, guid: f42794d5cd9660b42bd45ad847332c13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.9
@@ -4288,13 +4292,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 791534589179059383, guid: f42794d5cd9660b42bd45ad847332c13, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6214004384079512316, guid: f42794d5cd9660b42bd45ad847332c13, type: 3}
       propertyPath: m_Name
       value: PortaCam
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214004384079512316, guid: f42794d5cd9660b42bd45ad847332c13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8370932361781706248, guid: f42794d5cd9660b42bd45ad847332c13, type: 3}
       propertyPath: m_LocalPosition.x
