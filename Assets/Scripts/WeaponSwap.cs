@@ -9,8 +9,9 @@ public class WeaponSwap : MonoBehaviour
     public GameObject topRight;
     public GameObject botLeft;
     public GameObject botRight;
-    public float grabThresholdX;
-    public float grabThresholdY;
+    public float leftRightThreshold;
+    public float headThreshold;
+    public float hipThreshold;
     public bool isLeftHand;
     public GameObject handObject;
 
@@ -69,11 +70,13 @@ public class WeaponSwap : MonoBehaviour
     // Actions to take when it's time to equip a weapon
     private void EquipWeapon()
     {
-        isHolding = true;
         // Conditionally grab the direction based on where the localPosition is;
         GameObject weapon = GetWeaponByLocation();
-        currentWeapon = Instantiate(weapon, gameObject.transform);
-        SetHandVisibility(false);
+        if (weapon != null) {
+            currentWeapon = Instantiate(weapon, gameObject.transform);
+            SetHandVisibility(false);
+            isHolding = true;
+        }
     }
 
     // Drop the current weapon
@@ -95,8 +98,24 @@ public class WeaponSwap : MonoBehaviour
         hmdController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 hmdPosition);
         handController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 handPosition);
         Vector3 relativePosition = handPosition - hmdPosition;
-        // Debug.Log("Relative Position: " + relativePosition);
-        return topLeft;
+        Debug.Log(relativePosition);
+
+        bool isLeftThreshold = relativePosition.x < -leftRightThreshold;
+        bool isRightThreshold = relativePosition.x > leftRightThreshold;
+        bool isTopThreshold = relativePosition.y > headThreshold;
+        bool isBotThreshold = relativePosition.y < hipThreshold;
+
+        if (isLeftThreshold && isTopThreshold) {
+            return topLeft;
+        } else if (isRightThreshold && isTopThreshold) {
+            return topRight;
+        } else if (isLeftThreshold && isBotThreshold) {
+            return botLeft;
+        } else if (isRightThreshold && isBotThreshold) {
+            return botRight;
+        }
+
+        return null;
     }
 
     private void SetHandVisibility(bool shouldShow)

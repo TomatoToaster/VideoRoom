@@ -4446,9 +4446,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 695362902145431354, guid: 4971f45f917e71042b76903178b0c7d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6908639865767475588, guid: 4971f45f917e71042b76903178b0c7d0, type: 3}
       propertyPath: m_Name
       value: SafeRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084318375349833370, guid: 4971f45f917e71042b76903178b0c7d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -45,12 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9bc71bb9f08344cbe2ac597361c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft: {fileID: 3503365734641502023, guid: 1088771e6285ad8409158694af5210bb, type: 3}
-  topRight: {fileID: 3503365734641502023, guid: 1088771e6285ad8409158694af5210bb, type: 3}
+  topLeft: {fileID: 3503365734641502023, guid: a888f40475835284780b0560f22d9027, type: 3}
+  topRight: {fileID: 3503365734641502023, guid: 52c9ce94e283abd4f8e4eeb28fd2992a, type: 3}
   botLeft: {fileID: 3503365734641502023, guid: 1088771e6285ad8409158694af5210bb, type: 3}
-  botRight: {fileID: 3503365734641502023, guid: 1088771e6285ad8409158694af5210bb, type: 3}
-  grabThresholdX: 0
-  grabThresholdY: 0
+  botRight: {fileID: 3503365734641502023, guid: 860989af7591fe14ebd6c88ae9f1f88d, type: 3}
+  leftRightThreshold: 0.01
+  headThreshold: -0.2
+  hipThreshold: -0.4
   isLeftHand: 0
   handObject: {fileID: 7235620182658034518}
 --- !u!1001 &7542262642769368583
@@ -71,7 +72,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6407f9ea9ec77c84fa16c7cc78b47ae2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6407f9ea9ec77c84fa16c7cc78b47ae2, type: 3}
       propertyPath: m_LocalRotation.w
