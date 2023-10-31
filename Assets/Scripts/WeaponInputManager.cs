@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class WeaponSwap : MonoBehaviour
+public class WeaponInputManager : MonoBehaviour
 {
     public GameObject topLeft;
     public GameObject topRight;
@@ -18,14 +18,16 @@ public class WeaponSwap : MonoBehaviour
     private XRNode relevantControllerNode;
     private InputDevice handController;
     private InputDevice hmdController;
-    private bool isHolding;
+    private bool isHoldingGrip;
+    private bool isHoldingTrigger;
     private GameObject currentWeapon;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        isHolding = false;
+        isHoldingGrip = false;
+        isHoldingTrigger = false;
         if (isLeftHand) {
             relevantControllerNode = XRNode.LeftHand;
         } else {
@@ -42,6 +44,10 @@ public class WeaponSwap : MonoBehaviour
 
         if(handController.TryGetFeatureValue(CommonUsages.gripButton, out bool isGripPressed)){
             HandleGrip(isGripPressed);
+        };
+
+        if(handController.TryGetFeatureValue(CommonUsages.triggerButton, out bool isTriggerPressed)){
+            HandleTrigger(isTriggerPressed);
         };
     }
 
@@ -60,10 +66,28 @@ public class WeaponSwap : MonoBehaviour
 
     private void HandleGrip(bool isGripHeldThisFrame)
     {
-        if (isHolding && !isGripHeldThisFrame) {
-            UnequipWeapon();
-        } else if (!isHolding && isGripHeldThisFrame) {
+        if (!isHoldingGrip && isGripHeldThisFrame) {
             EquipWeapon();
+            isHoldingGrip = true;
+        } else if (isHoldingGrip && !isGripHeldThisFrame) {
+            UnequipWeapon();
+            isHoldingGrip = false;
+        }
+    }
+
+    private void HandleTrigger(bool isTriggerHeldThisFrame)
+    {
+        if (!currentWeapon) {
+            return;
+        }
+
+        Weapon weapon = currentWeapon.GetComponent<Weapon>();
+        if (!isHoldingTrigger && isTriggerHeldThisFrame) {
+            weapon.Activate();
+            isHoldingTrigger = true;
+        } else if (isHoldingTrigger && !isTriggerHeldThisFrame) {
+            weapon.Deactivate();
+            isHoldingTrigger = false;
         }
     }
 
@@ -75,14 +99,13 @@ public class WeaponSwap : MonoBehaviour
         if (weapon != null) {
             currentWeapon = Instantiate(weapon, gameObject.transform);
             SetHandVisibility(false);
-            isHolding = true;
         }
     }
 
     // Drop the current weapon
     private void UnequipWeapon()
     {
-        isHolding = false;
+        isHoldingGrip = false;
         if (!currentWeapon) {
             return;
         }
@@ -98,7 +121,6 @@ public class WeaponSwap : MonoBehaviour
         hmdController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 hmdPosition);
         handController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 handPosition);
         Vector3 relativePosition = handPosition - hmdPosition;
-        Debug.Log(relativePosition);
 
         bool isLeftThreshold = relativePosition.x < -leftRightThreshold;
         bool isRightThreshold = relativePosition.x > leftRightThreshold;

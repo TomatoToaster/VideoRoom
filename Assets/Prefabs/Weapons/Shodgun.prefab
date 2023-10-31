@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3797411885873667727}
   - component: {fileID: 6895544243956798122}
-  - component: {fileID: 3719386823958101507}
   - component: {fileID: 4759215596714193819}
+  - component: {fileID: -3640886831161566175}
   m_Layer: 0
   m_Name: Shodgun
   m_TagString: Untagged
@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8867580273408478797}
+  - {fileID: 5004973361702018433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6895544243956798122
@@ -62,27 +63,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &3719386823958101507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3503365734641502023}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.20514503, z: 0.53247}
-  m_Center: {x: 0, y: -0.022427488, z: 0.0032862425}
 --- !u!114 &4759215596714193819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +77,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyTime: 2
   throwFactor: 3
+--- !u!114 &-3640886831161566175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503365734641502023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e93af213bbfcb4ca57ea91a21db692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4998174673843180991, guid: 470da3b829e25a94e9a9448769defc52, type: 3}
+  cooldown: 0.5
+  shootOrigin: {fileID: 0}
+--- !u!1 &9100425359812454475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5004973361702018433}
+  m_Layer: 0
+  m_Name: ShootOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5004973361702018433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100425359812454475}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0018, z: 0.3208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3797411885873667727}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8972648458166692262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,8 +194,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d37ed028926802c4a96d3ab93aec63c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7367098949680306258}
   m_SourcePrefab: {fileID: 100100000, guid: d37ed028926802c4a96d3ab93aec63c9, type: 3}
+--- !u!1 &8089636916459623671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d37ed028926802c4a96d3ab93aec63c9, type: 3}
+  m_PrefabInstance: {fileID: 8972648458166692262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7367098949680306258
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089636916459623671}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.099999994, y: 0.24, z: 0.53163916}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &8867580273408478797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d37ed028926802c4a96d3ab93aec63c9, type: 3}
