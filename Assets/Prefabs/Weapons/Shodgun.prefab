@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa52008b71f119a4c960c578611fc026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 2
+  destroyTime: 3
   throwFactor: 3
 --- !u!114 &-3640886831161566175
 MonoBehaviour:
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4998174673843180991, guid: 470da3b829e25a94e9a9448769defc52, type: 3}
   cooldown: 0.5
-  shootOrigin: {fileID: 0}
+  shootOrigin: {fileID: 5004973361702018433}
 --- !u!1 &9100425359812454475
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 9100425359812454475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0018, z: 0.3208}
+  m_LocalPosition: {x: 0, y: -0.027, z: 0.331}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

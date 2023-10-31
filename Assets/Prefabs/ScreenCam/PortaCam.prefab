@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1709215782484575526}
   - component: {fileID: 3255580584369046076}
-  - component: {fileID: 551873581196731864}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -84,20 +83,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &551873581196731864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791534589179059383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7828dc1bcad34748ba8172770fcdb35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedHorizontal: 1
-  speedVertical: 1
 --- !u!1 &3837098887663445110
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8370932361781706248}
   - component: {fileID: 3893198667604071060}
+  - component: {fileID: 7148129974411869093}
   m_Layer: 0
   m_Name: PortaCam
   m_TagString: Untagged
@@ -177,6 +163,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 212139350206749560}
+--- !u!114 &7148129974411869093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214004384079512316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7828dc1bcad34748ba8172770fcdb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedHorizontal: 1
+  speedVertical: 1
+  rotationClamp: {x: 90, y: 90}
 --- !u!1001 &8394550098561516231
 PrefabInstance:
   m_ObjectHideFlags: 0

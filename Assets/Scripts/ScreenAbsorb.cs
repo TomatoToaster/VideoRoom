@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScreenAbsorb : MonoBehaviour
 {
     public GameObject startingLinkedCam;
+    public Transform intakePoint;
 
     private GameObject linkedCam;
 
@@ -17,13 +18,11 @@ public class ScreenAbsorb : MonoBehaviour
     void OnCollisionEnter(Collision collisionInfo)
     {
         GameObject other = collisionInfo.gameObject;
-        if (!other.CompareTag("Projectile")) {
+        if (!other.CompareTag("Teleportable")) {
             return;
         }
-        Debug.Log(collisionInfo.relativeVelocity);
-        Debug.Log(other.GetComponent<Rigidbody>().velocity);
 
-        TeleportProjectile(other);
+        TeleportProjectile(other, collisionInfo.relativeVelocity);
 
     }
 
@@ -35,7 +34,7 @@ public class ScreenAbsorb : MonoBehaviour
         linkedCam.GetComponent<PortaCam>().LinkScreen(gameObject);
     }
 
-    private void TeleportProjectile(GameObject projectile)
+    private void TeleportProjectile(GameObject projectile, Vector3 intakeVelocity)
     {
         Debug.Log("Teleporting Projectile");
 
@@ -44,21 +43,16 @@ public class ScreenAbsorb : MonoBehaviour
         // rotation and reparent to linked camera and apply the relative
         // rotation & position
 
-        // Transform teleportPoint = linkedCam.GetComponent<PortaCam>().GetTeleportPoint();
+        Transform teleportPoint = linkedCam.GetComponent<PortaCam>().GetTeleportPoint();
 
-        // projectile.transform.parent = transform;
-        // projectile.transform.GetLocalPositionAndRotation(out Vector3 locPos, out Quaternion locRot);
+        projectile.transform.SetParent(intakePoint);
+        projectile.transform.SetParent(teleportPoint, false);
+        projectile.transform.SetParent(null);
 
-        // projectile.transform.parent = teleportPoint;
-        // projectile.transform.SetLocalPositionAndRotation(locPos, locRot);
+        // Apply the rigidbodies velocity relative to the new orientation
+        Rigidbody projRb = projectile.GetComponent<Rigidbody>();
+        projRb.velocity = intakeVelocity.magnitude * projectile.transform.forward;
 
-        // projectile.transform.parent = null;
-
-        // // Apply the rigidbodies velocity to the new orientation
-        // Rigidbody projRb = projectile.GetComponent<Rigidbody>();
-        // projRb.velocity = projRb.velocity.magnitude * projectile.transform.forward;
-
-        // Attempt 2
 
 
         // Method2

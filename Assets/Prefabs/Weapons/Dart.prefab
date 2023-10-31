@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3027188121189599219}
   - component: {fileID: 7955939570438903001}
   - component: {fileID: 8795499548935554361}
-  - component: {fileID: 921761025406455611}
-  m_Layer: 0
+  - component: {fileID: 6209744145263215276}
+  m_Layer: 6
   m_Name: Dart
-  m_TagString: Projectile
+  m_TagString: Teleportable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7124937223838635276}
   - {fileID: 685815205127566638}
@@ -46,7 +46,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 5
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -62,7 +62,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!114 &8795499548935554361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,10 +76,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  lifeTime: 1.5
+  lifeTime: 3
   deathParticles: {fileID: 3057785421631806984}
---- !u!136 &921761025406455611
-CapsuleCollider:
+--- !u!65 &6209744145263215276
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,10 +96,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.010000001
-  m_Height: 0.060000014
-  m_Direction: 2
+  serializedVersion: 3
+  m_Size: {x: 0.019999996, y: 0.02, z: 0.06000001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3889602149891265538
 GameObject:
@@ -113,7 +111,7 @@ GameObject:
   - component: {fileID: 3057785421631806984}
   - component: {fileID: 6730417246247309038}
   - component: {fileID: 3463962187246763225}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DeathParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4993,6 +4991,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae2ded9dad991c840a9a2695b5855773, type: 3}
       propertyPath: m_Name
       value: foamBulletB
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae2ded9dad991c840a9a2695b5855773, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

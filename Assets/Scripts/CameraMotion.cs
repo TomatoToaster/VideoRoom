@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -8,11 +9,20 @@ public class CameraMotion : MonoBehaviour
 {
     public float speedHorizontal = 1;
     public float speedVertical = 1;
+    public Vector2 rotationClamp;
 
     private InputDevice leftController;
     private InputDevice rightController;
 
-    // Update is called once per frame
+    private Vector2 cameraAngleChange;
+    private Vector3 originalRotation;
+
+    void Start()
+    {
+        originalRotation = transform.rotation.eulerAngles;
+        cameraAngleChange = Vector2.zero;
+    }
+
     void Update()
     {
         if (!IsInputInitialized()) {
@@ -42,9 +52,32 @@ public class CameraMotion : MonoBehaviour
         }
         return true;
     }
-    private void ApplyMotion(Vector2 move)
+    private void ApplyMotion(Vector2 controllerChange)
     {
-        transform.Rotate(Vector3.left * move.y * speedHorizontal);
-        transform.Rotate(Vector3.up * move.x * speedVertical);
+        cameraAngleChange += new Vector2(controllerChange.x * speedHorizontal, controllerChange.y * speedVertical);
+        cameraAngleChange = ClampXY(cameraAngleChange);
+
+        transform.rotation = Quaternion.Euler(originalRotation + HandleXYToPitchYawRoll(cameraAngleChange));
+    }
+
+    // Turn reading from controller stick movement in terms of (x, y)
+    // to Unity's 3D rotation (pitch, yaw, roll)
+    // By default
+    // Pitch should be inverted y from controller
+    // Yaw is normal x from controller
+    // Roll should never change
+    private Vector3 HandleXYToPitchYawRoll(Vector2 controllerMove)
+    {
+        return new Vector3(-controllerMove.y, controllerMove.x, 0);
+    }
+
+    private Vector2 ClampXY(Vector2 vec)
+    {
+        float x = vec.x;
+        float y = vec.y;
+
+        x = Mathf.Clamp(x, -rotationClamp.x, rotationClamp.x);
+        y = Mathf.Clamp(y, -rotationClamp.y, rotationClamp.y);
+        return new Vector2(x, y);
     }
 }
