@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Teleportable
   - Projectile
+  - Screen
   layers:
   - Default
   - TransparentFX
